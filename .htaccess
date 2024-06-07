@@ -1,0 +1,17 @@
+# Activo el direccionamiento
+RewriteEngine On
+# No permito la navegacion entre carpetas.
+Options All -Indexes
+# Reglas
+#[QSA] que se agregen parametros en la ruta
+RewriteRule ^(usuarios)/(login|registro) index.php?model=$1&accion=$2  [QSA]
+#^que despues del archivo vas a tener poner en la regla
+#$termina el endpoid
+#RewriteRule ^(pepe)/(pdf) index.php?model=$1&pdf=$2 [QSA]
+RewriteRule ^([a-z]+)/(pdf)$  index.php?model=$1&pdf=$2 [QSA]
+#[a-z] dice que acepta de a a la z, + dice que minimo una letra
+#/que va / y \d son numeros de 0-9 y + minimo un numero
+#? (/(\d+)) que esto es opcional
+RewriteRule ^([a-z]+)/(\d+)/(\d+)$ index.php?model=$1&id=$2&id2=$3 [QSA]
+
+RewriteRule ^([a-z]+)(/(\d+))?$  index.php?model=$1&id=$3  [QSA]
